@@ -1,40 +1,44 @@
 import turtle
 
-def draw_koch_curve(koch_turtle, size, level):
-    
-    if level == 0:
-        koch_turtle.forward(size)
-        return
+def draw_koch_curve(turtle, size, level):
 
-    draw_koch_curve(koch_turtle, size / 3, level - 1)
-    koch_turtle.left(60)
-    draw_koch_curve(koch_turtle, size / 3, level - 1)
-    koch_turtle.right(120)
-    draw_koch_curve(koch_turtle, size / 3, level - 1)
-    koch_turtle.left(60)
-    draw_koch_curve(koch_turtle, size / 3, level - 1)
+  if level == 0:
+    turtle.forward(size)
+    return
+
+  draw_koch_curve(turtle, size / 3, level - 1)
+  turtle.left(60)
+  draw_koch_curve(turtle, size / 3, level - 1)
+  turtle.right(120)
+  draw_koch_curve(turtle, size / 3, level - 1)
+  turtle.left(60)
+  draw_koch_curve(turtle, size / 3, level - 1)
+
+turtle = turtle.Turtle()
 
 def main():
+  turtle.speed(0)
+  turtle.pensize(1)
+  turtle.penup()
 
-    koch_turtle = turtle.Turtle()
-    koch_turtle.speed(0)
-    koch_turtle.pensize(2)
-    koch_turtle.penup()
+  while True:
+    try:
+      level = int(input("Введіть рівень рекурсії (0-7): "))
+      if 0 <= level <= 7:
+        break
+      else:
+        print("Неправильне значення рівня рекурсії. Введіть значення від 0 до 7.")
+    except ValueError:
+      print("Неправильне значення. Введіть ціле число.")
 
-    while True:
-        level = int(input("Введіть рівень рекурсії (0-7): "))
-        if 0 <= level <= 7:
-            break
-        else:
-            print("Неправильне значення рівня рекурсії. Введіть значення від 0 до 7.")
+  turtle.setposition(-0.8, 0.6)
+  turtle.pendown()
 
-    koch_turtle.setposition(-0.8, 0.6)
-    koch_turtle.pendown()
-
-    draw_koch_curve(koch_turtle, 160, level)
-
-    koch_turtle.hideturtle()
-    turtle.done()
+  for _ in range(6):
+    draw_koch_curve(turtle, 160, level) 
+    turtle.left(120)
+    turtle.hideturtle()
+    turtle.clone()
 
 if __name__ == "__main__":
-    main()
+  main()
