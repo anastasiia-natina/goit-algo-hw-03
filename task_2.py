@@ -34,9 +34,9 @@ def main():
   turtle.setposition(-0.8, 0.6)
   turtle.pendown()
 
-  for _ in range(6):
+  for _ in range(3):
     draw_koch_curve(turtle, 160, level) 
-    turtle.left(120)
+    turtle.right(120)
     turtle.hideturtle()
     turtle.clone()
 
